@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Author"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Author" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" x:Name="Menu">
+            <MenuItem Header="_File">
+                
+            </MenuItem>
+            <MenuItem Header="_Settings">
 
-    </Grid>
+            </MenuItem>
+            <MenuItem Header="_Actions">
+
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
+                    MaxWidth="160">
+            <TabItem Header="Actors">
+            </TabItem>
+            <TabItem Header="Relations">
+            </TabItem>
+            <TabItem Header="Facts">
+            </TabItem>
+            <TabItem Header="Misc">
+            </TabItem>
+        </TabControl>
+        <!--<TabControl DockPanel.Dock="Right">
+            <TabItem Header="Test"></TabItem>
+        </TabControl>-->
+        <StackPanel DockPanel.Dock="Bottom" x:Name="ControlBar" Orientation="Horizontal" MaxHeight="50" Height="19" HorizontalAlignment="Stretch">
+            <Slider 
+                x:Name="HistoryBar"
+                Minimum="1" Maximum="99999" 
+                Width="{ Binding Path = ActualWidth, ElementName = ControlBar }" 
+                Padding="0 20"/>
+        </StackPanel>
+        <Canvas x:Name="Canvas">
+
+        </Canvas>
+    </DockPanel>
 </Window>
