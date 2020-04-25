@@ -1,4 +1,5 @@
-﻿using Author.ViewModels;
+﻿using Author.Models;
+using Author.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,22 @@ namespace Author
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        #region private fields
+        private ViewTabHandler _tabHandler;
+
+
+        #endregion
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeGui();
+            InitializeGlobals();
+        }
+
+        private void InitializeGlobals()
+        {
+            _tabHandler = new ViewTabHandler();
         }
 
         private void InitializeGui()
