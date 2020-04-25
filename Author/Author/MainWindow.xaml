@@ -37,21 +37,18 @@
         <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
                     MaxWidth="160">
             <TabItem x:Name="ActorTab" Header="Actors" GotFocus="ActorViewSelected">
-                <Button MaxHeight="30">Test Actor</Button>
+                <Button MaxHeight="30" x:Name="AddActorBtn" Background="LightGreen">New Actor</Button>
             </TabItem>
             <TabItem x:Name="RelationsTab" Header="Relations" GotFocus="RelationsViewSelected">
-                <Button MaxHeight="30">Test Relation</Button>
+                <Button MaxHeight="30" x:Name="AddRelationsBtn" Background="LightGreen">Add Relation</Button>
             </TabItem>
             <TabItem x:Name="FactsTab" Header="Facts" GotFocus="FactsViewSelected">
-                <Button MaxHeight="30">Test Fact</Button>
+                <Button MaxHeight="30" x:Name="AddFactsBtn" Background="LightGreen">Add Fact</Button>
             </TabItem>
             <TabItem x:Name="GeneralTab" Header="General" Margin="-2,0,-2,0" GotFocus="GeneralViewSelected">
-                <Button MaxHeight="30">Test General</Button>
+                <Button MaxHeight="30" x:Name="AddGeneralBtn" Background="LightGreen">Add General</Button>
             </TabItem>
         </TabControl>
-        <!--<TabControl DockPanel.Dock="Right">
-            <TabItem Header="Test"></TabItem>
-        </TabControl>-->
         <StackPanel DockPanel.Dock="Bottom" x:Name="ControlBar" Orientation="Horizontal" MaxHeight="50" Height="19" HorizontalAlignment="Stretch">
             <Slider 
                 x:Name="HistoryBar"
