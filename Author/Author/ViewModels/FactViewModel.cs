@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Author.ViewModels
 {
-    class FactViewModel
+    public class FactViewModel
     {
     }
 }

@@ -12,11 +12,20 @@
         <DataTemplate x:Name="actorViewTemplate" DataType="{x:Type viewmodels:ActorViewModel}">
             <views:ActorView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="factViewTemplate" DataType="{x:Type viewmodels:FactViewModel}">
+            <views:FactView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="generalViewTemplate" DataType="{x:Type viewmodels:GeneralViewModel}">
+            <views:GeneralView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="relationsViewTemplate" DataType="{x:Type viewmodels:RelationsViewModel}">
+            <views:RelationsView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" x:Name="Menu">
             <MenuItem Header="_File">
-                
+
             </MenuItem>
             <MenuItem Header="_Settings">
 
@@ -27,16 +36,16 @@
         </Menu>
         <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
                     MaxWidth="160">
-            <TabItem Header="Actors">
+            <TabItem x:Name="ActorTab" Header="Actors" GotFocus="ActorViewSelected">
                 <Button MaxHeight="30">Test Actor</Button>
             </TabItem>
-            <TabItem Header="Relations">
+            <TabItem x:Name="RelationsTab" Header="Relations" GotFocus="RelationsViewSelected">
                 <Button MaxHeight="30">Test Relation</Button>
             </TabItem>
-            <TabItem Header="Facts">
+            <TabItem x:Name="FactsTab" Header="Facts" GotFocus="FactsViewSelected">
                 <Button MaxHeight="30">Test Fact</Button>
             </TabItem>
-            <TabItem Header="General">
+            <TabItem x:Name="GeneralTab" Header="General" Margin="-2,0,-2,0" GotFocus="GeneralViewSelected">
                 <Button MaxHeight="30">Test General</Button>
             </TabItem>
         </TabControl>
@@ -50,11 +59,11 @@
                 Width="{ Binding Path = ActualWidth, ElementName = ControlBar }" 
                 Padding="0 20"/>
         </StackPanel>
-        
+
         <!-- Elements are center control. Do not add additional elements -->
         <!-- Only one visible at a time -->
-        
+
         <ContentControl x:Name="DisplayControl" Content="{Binding}"></ContentControl>
-        
+
     </DockPanel>
 </Window>

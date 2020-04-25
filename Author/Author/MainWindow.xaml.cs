@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Author.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -26,7 +27,32 @@ namespace Author
         public MainWindow()
         {
             InitializeComponent();
-            DisplayControl.Content = new GraphControl();
+            InitializeGui();
+        }
+
+        private void InitializeGui()
+        {
+            GeneralTab.Focus();
+        }
+
+        private void ActorViewSelected(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ActorViewModel();
+        }
+
+        private void FactsViewSelected(object sender, RoutedEventArgs e)
+        {
+            DataContext = new FactViewModel();
+        }
+
+        private void GeneralViewSelected(object sender, RoutedEventArgs e)
+        {
+            DataContext = new GeneralViewModel();
+        }
+
+        private void RelationsViewSelected(object sender, RoutedEventArgs e)
+        {
+            DataContext = new RelationsViewModel();
         }
     }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Author.ViewModels
 {
-    public class ActorViewModel
+    class GeneralViewModel
     {
     }
 }
