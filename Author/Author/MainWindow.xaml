@@ -4,8 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Author"
+        xmlns:viewmodels="clr-namespace:Author.ViewModels"
+        xmlns:views="clr-namespace:Author.Views"
         mc:Ignorable="d"
-        Title="Author" Height="450" Width="800">
+        Title="Author" Height="450" Width="487">
+    <Window.Resources>
+        <DataTemplate x:Name="actorViewTemplate" DataType="{x:Type viewmodels:ActorViewModel}">
+            <views:ActorView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" x:Name="Menu">
             <MenuItem Header="_File">
@@ -21,12 +28,16 @@
         <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
                     MaxWidth="160">
             <TabItem Header="Actors">
+                <Button MaxHeight="30">Test Actor</Button>
             </TabItem>
             <TabItem Header="Relations">
+                <Button MaxHeight="30">Test Relation</Button>
             </TabItem>
             <TabItem Header="Facts">
+                <Button MaxHeight="30">Test Fact</Button>
             </TabItem>
-            <TabItem Header="Misc">
+            <TabItem Header="General">
+                <Button MaxHeight="30">Test General</Button>
             </TabItem>
         </TabControl>
         <!--<TabControl DockPanel.Dock="Right">
@@ -39,8 +50,11 @@
                 Width="{ Binding Path = ActualWidth, ElementName = ControlBar }" 
                 Padding="0 20"/>
         </StackPanel>
-        <Canvas x:Name="Canvas">
-
-        </Canvas>
+        
+        <!-- Elements are center control. Do not add additional elements -->
+        <!-- Only one visible at a time -->
+        
+        <ContentControl x:Name="DisplayControl" Content="{Binding}"></ContentControl>
+        
     </DockPanel>
 </Window>
