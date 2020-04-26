@@ -28,13 +28,22 @@
     <DockPanel x:Name="WindowRoot">
         <Menu DockPanel.Dock="Top" x:Name="Menu">
             <MenuItem Header="_File">
-                
+                <MenuItem Header="_New Storyline"/>
+                <MenuItem Header="_Open"/>
+                <MenuItem Header="_Save For Epoch"/>
+                <MenuItem Header="_Save As Keyframe"/>
             </MenuItem>
             <MenuItem Header="_Settings">
 
             </MenuItem>
             <MenuItem Header="_Actions">
 
+            </MenuItem>
+            <MenuItem Header="_About">
+                <MenuItem Header="_Help">
+                    <MenuItem Header="Overview"></MenuItem>
+                    <MenuItem Header="Timeline"></MenuItem>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
