@@ -7,7 +7,10 @@
         xmlns:viewmodels="clr-namespace:Author.ViewModels"
         xmlns:views="clr-namespace:Author.Views"
         mc:Ignorable="d"
-        Title="Author" Height="450" Width="487">
+        Title="Author"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}"
+        >
     <Window.Resources>
         <DataTemplate x:Name="actorViewTemplate" DataType="{x:Type viewmodels:ActorViewModel}">
             <views:ActorView DataContext="{Binding}"/>
@@ -22,10 +25,10 @@
             <views:RelationsView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    <DockPanel>
+    <DockPanel x:Name="WindowRoot">
         <Menu DockPanel.Dock="Top" x:Name="Menu">
             <MenuItem Header="_File">
-
+                
             </MenuItem>
             <MenuItem Header="_Settings">
 
@@ -37,16 +40,21 @@
         <TabControl DockPanel.Dock="Left" x:Name="ContextTab" Background="AliceBlue"
                     MaxWidth="160">
             <TabItem x:Name="ActorTab" Header="Actors" GotFocus="ActorViewSelected">
-                <Button MaxHeight="30" x:Name="AddActorBtn" Background="LightGreen">New Actor</Button>
+                <StackPanel>
+                    <StackPanel x:Name="ActorStackPanel">
+
+                    </StackPanel>
+                    <Button MaxHeight="30" x:Name="AddActorBtn" Background="LightGreen" Click="AddNewActor">New Actor</Button>
+                </StackPanel>
             </TabItem>
             <TabItem x:Name="RelationsTab" Header="Relations" GotFocus="RelationsViewSelected">
-                <Button MaxHeight="30" x:Name="AddRelationsBtn" Background="LightGreen">Add Relation</Button>
+                <Button MaxHeight="30" x:Name="AddRelationsBtn" Background="LightGreen" Click="AddNewRelation">Add Relation</Button>
             </TabItem>
             <TabItem x:Name="FactsTab" Header="Facts" GotFocus="FactsViewSelected">
-                <Button MaxHeight="30" x:Name="AddFactsBtn" Background="LightGreen">Add Fact</Button>
+                <Button MaxHeight="30" x:Name="AddFactsBtn" Background="LightGreen" Click="AddNewFact">Add Fact</Button>
             </TabItem>
             <TabItem x:Name="GeneralTab" Header="General" Margin="-2,0,-2,0" GotFocus="GeneralViewSelected">
-                <Button MaxHeight="30" x:Name="AddGeneralBtn" Background="LightGreen">Add General</Button>
+                <Button MaxHeight="30" x:Name="AddGeneralBtn" Background="LightGreen" Click="AddNewGeneral">Add General</Button>
             </TabItem>
         </TabControl>
         <StackPanel DockPanel.Dock="Bottom" x:Name="ControlBar" Orientation="Horizontal" MaxHeight="50" Height="19" HorizontalAlignment="Stretch">

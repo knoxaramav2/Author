@@ -34,13 +34,20 @@ namespace Author
             InitializeGlobals();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ClearValue(SizeToContentProperty);
+            WindowRoot.ClearValue(WidthProperty);
+            WindowRoot.ClearValue(HeightProperty);
+        }
+
         private void InitializeGlobals()
         {
         }
 
         private void InitializeGui()
         {
-            GeneralTab.Focus();
+            ActorTab.Focus();
         }
 
         #region TabSwitch
@@ -71,12 +78,12 @@ namespace Author
 
         private void AddNewFact(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void AddNewActor(object sender, RoutedEventArgs e)
         {
-
+            ActorStackPanel.Children.Add(CreateActorRow());
         }
 
         private void AddNewGeneral(object sender, RoutedEventArgs e)
@@ -89,6 +96,40 @@ namespace Author
 
         }
 
+        #endregion
+
+        #region TabItemFunctions
+
+        public void LoadActorPage(string guid)
+        {
+
+        }
+
+        #endregion
+
+        #region helpers
+        string GenerateUID()
+        {
+            var guid = Guid.NewGuid();
+
+            return guid.ToString();
+        }
+        
+        UIElement CreateActorRow()
+        {
+            var elt = new StackPanel();
+            var row = new Button();
+
+            elt.Uid = GenerateUID();
+            row.Content = "New Actor";
+            row.Click += new RoutedEventHandler((e,sender) => LoadActorPage(elt.Uid));
+
+            elt.HorizontalAlignment = HorizontalAlignment.Center;
+
+            elt.Children.Add(row);
+
+            return elt;
+        }
         #endregion
     }
 
