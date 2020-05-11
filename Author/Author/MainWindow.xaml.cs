@@ -1,20 +1,11 @@
-﻿using Author.Models;
-using Author.ViewModels;
+﻿using Author.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Author
 {
@@ -25,6 +16,13 @@ namespace Author
     {
         #region private fields
 
+        private DataContext _context;
+
+        #endregion
+
+        #region PublicFields
+        public DataContext Context;
+        public MModel Model;
         #endregion
 
         public MainWindow()
@@ -32,6 +30,19 @@ namespace Author
             InitializeComponent();
             InitializeGui();
             InitializeGlobals();
+
+            for (var i = 0; i < 5; ++i)
+            {
+                var node = new MNode
+                {
+                    Title = $"Test {i}"
+                };
+                Model.Nodes.Add(node);
+            }
+
+            HistoryControl.ItemsSource = Model.Nodes;
+
+            DataContext = new ActorViewModel();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,10 +50,14 @@ namespace Author
             ClearValue(SizeToContentProperty);
             WindowRoot.ClearValue(WidthProperty);
             WindowRoot.ClearValue(HeightProperty);
+
+            Test();
         }
 
         private void InitializeGlobals()
         {
+            Context = _context = new DataContext();
+            Model = new MModel();
         }
 
         private void InitializeGui()
@@ -50,11 +65,21 @@ namespace Author
             ActorTab.Focus();
         }
 
+        private void Test()
+        {
+            AddNewActor(null, null);
+            AddNewActor(null, null);
+            AddNewActor(null, null);
+            AddNewActor(null, null);
+            AddNewActor(null, null);
+        }
+        
         #region TabSwitch
 
         private void ActorViewSelected(object sender, RoutedEventArgs e)
         {
             DataContext = new ActorViewModel();
+            //WindowRoot.Background = Brushes.Red;
         }
 
         private void FactsViewSelected(object sender, RoutedEventArgs e)
@@ -84,6 +109,7 @@ namespace Author
         private void AddNewActor(object sender, RoutedEventArgs e)
         {
             ActorStackPanel.Children.Add(CreateActorRow());
+            _context.historyView.AddHistoryLayer("Test");
         }
 
         private void AddNewGeneral(object sender, RoutedEventArgs e)
@@ -133,10 +159,44 @@ namespace Author
         #endregion
     }
 
+    public class DataContext
+    {
+        #region private fields
+
+        private HistoryViewModel _historyView;
+
+        #endregion
+
+        #region PublicFields
+        public HistoryViewModel historyView;
+        #endregion
+
+        public DataContext()
+        {
+            historyView = _historyView = new HistoryViewModel();
+        }
+   
+    }
     public class GraphControl : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         
+    }
+
+
+    public class MModel
+    {
+        public ObservableCollection<MNode> Nodes;
+
+        public MModel()
+        {
+            Nodes = new ObservableCollection<MNode>();
+        }
+    }
+
+    public class MNode 
+    {
+        public string Title { get; set; }
     }
 }

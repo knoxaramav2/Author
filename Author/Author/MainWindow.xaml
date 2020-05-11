@@ -10,6 +10,7 @@
         Title="Author"
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}"
+        x:Name="window"
         >
     <Window.Resources>
         <DataTemplate x:Name="actorViewTemplate" DataType="{x:Type viewmodels:ActorViewModel}">
@@ -66,15 +67,27 @@
                 <Button MaxHeight="30" x:Name="AddGeneralBtn" Background="LightGreen" Click="AddNewGeneral">Add General</Button>
             </TabItem>
         </TabControl>
-        <StackPanel DockPanel.Dock="Bottom" x:Name="ControlBar" Orientation="Horizontal" MaxHeight="50" Height="19" HorizontalAlignment="Stretch">
-            <Slider 
-                x:Name="HistoryBar"
-                Minimum="1" Maximum="99999" 
-                Width="{ Binding Path = ActualWidth, ElementName = ControlBar }" 
-                Padding="0 20"/>
+        <StackPanel DockPanel.Dock="Bottom">
+            <Grid>
+                <ItemsControl x:Name="HistoryControl" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Title}" Background="AliceBlue"/>
+                                <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Completion}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Slider></Slider>
         </StackPanel>
-
-        <!-- Elements are center control. Do not add additional elements -->
+        
+        
         <!-- Only one visible at a time -->
 
         <ContentControl x:Name="DisplayControl" Content="{Binding}"></ContentControl>
