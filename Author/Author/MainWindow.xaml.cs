@@ -1,4 +1,5 @@
-﻿using Author.ViewModels;
+﻿using Author.Models;
+using Author.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,7 @@ namespace Author
 
         #region PublicFields
         public DataContext Context;
-        public MModel Model;
+        public HistoryModel Model;
         #endregion
 
         public MainWindow()
@@ -31,16 +32,16 @@ namespace Author
             InitializeGui();
             InitializeGlobals();
 
-            for (var i = 0; i < 5; ++i)
+            for (var i = 0; i < 20; ++i)
             {
-                var node = new MNode
+                var node = new HistoryLine
                 {
                     Title = $"Test {i}"
                 };
-                Model.Nodes.Add(node);
+                Model.History.Add(node);
             }
 
-            HistoryControl.ItemsSource = Model.Nodes;
+            HistoryControl.ItemsSource = Model.History;
 
             DataContext = new ActorViewModel();
         }
@@ -57,7 +58,7 @@ namespace Author
         private void InitializeGlobals()
         {
             Context = _context = new DataContext();
-            Model = new MModel();
+            Model = new HistoryModel();
         }
 
         private void InitializeGui()
@@ -177,13 +178,11 @@ namespace Author
         }
    
     }
+
     public class GraphControl : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        
     }
-
 
     public class MModel
     {

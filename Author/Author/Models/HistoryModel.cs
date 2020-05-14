@@ -51,8 +51,9 @@ namespace Author.Models
     public class HistoryLine
     {
         private List<KeyFrame> _frames;
-
         internal Brush _color;
+
+        public string Title;
 
         internal HistoryLine()
         {

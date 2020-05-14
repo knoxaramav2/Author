@@ -68,26 +68,32 @@
             </TabItem>
         </TabControl>
         <StackPanel DockPanel.Dock="Bottom">
-            <Grid>
-                <ItemsControl x:Name="HistoryControl" >
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="100" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Title}" Background="AliceBlue"/>
-                                <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Completion}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
-            <Slider></Slider>
+            <ScrollViewer MaxHeight="100">
+                <Grid>
+                    <ItemsControl x:Name="HistoryControl" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Title}" ToolTip="{Binding Title}" 
+                                            Background="Lime" Width="80"/>
+                                    <!--<ProgressBar Grid.Column="1" Minimum="0" 
+                                                Maximum="100" Value="{Binding Completion}"
+                                                />-->
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+            <Slider IsSnapToTickEnabled="True"></Slider>
         </StackPanel>
-        
-        
+
+
+
         <!-- Only one visible at a time -->
 
         <ContentControl x:Name="DisplayControl" Content="{Binding}"></ContentControl>
